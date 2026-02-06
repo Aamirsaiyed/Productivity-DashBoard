@@ -1,0 +1,74 @@
+:root {
+    --primary-color: #fff;
+    --secondary-color: #111;
+    --tri-color: lightseagreen;
+}
+
+/* Aeonik Font Family */
+@font-face {
+    font-family: 'Aeonik';
+    src: url('fonts/AeonikTRIAL-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aeonik';
+    src: url('fonts/AeonikTRIAL-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aeonik';
+    src: url('fonts/AeonikTRIAL-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Aeonik', Arial, sans-serif;
+}
+
+
+#main {
+    height: 100%;
+    width: 100%;
+    background-color: var(--secondary-color);
+}
+
+h1 {
+    font-family: "Aeonik", Arial, sans-serif;
+    font-weight: 700;
+    /* Bold */
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+h2 {
+    font-family: "Aeonik", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+h3 {
+    font-family: "Aeonik", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
