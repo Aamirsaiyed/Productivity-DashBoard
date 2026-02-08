@@ -199,7 +199,11 @@ h6 {
 }
 
 
-.todo-list-fullpage h2 {
+.todo-list-fullpage h2,
+.daily-planner-fullpage h2,
+.motivational-fullpage h2,
+.pomodoro-timer-fullpage h2,
+.daily-goals-fullpage h2 {
     font-size: 65px;
 }
 
@@ -370,4 +374,211 @@ h6 {
 .task.done {
     opacity: 0.6;
     text-decoration: line-through;
+}
+
+.empty-state {
+    text-align: center;
+    margin-top: 120px;
+    opacity: 0.6;
+}
+
+.empty-state h3 {
+    font-size: 32px;
+    color: var(--pri);
+}
+
+.empty-state p {
+    font-size: 18px;
+    color: var(--pri);
+}
+
+
+/* daily planner */
+
+.daily-planner-fullpage .day-planner {
+    background-color: var(--tri2);
+    margin-top: 40px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+
+}
+
+.daily-planner-fullpage .day-planner .day-planner-time {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+
+.daily-planner-fullpage .day-planner .day-planner-time p {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+    color: var(--tri1);
+}
+
+
+.daily-planner-fullpage .day-planner .day-planner-time input[type="text"] {
+    padding: 20px 35px;
+    width: 100%;
+    background-color: var(--sec);
+    border: none;
+    border-radius: 5px;
+    font-size: 25px;
+    color: var(--pri);
+    outline: none;
+    padding-top: 40px;
+}
+
+
+@media (max-width: 1024px) {
+
+    .todo-list-fullpage h2,
+    .daily-planner-fullpage h2,
+    .motivational-fullpage h2,
+    .pomodoro-timer-fullpage h2,
+    .daily-goals-fullpage h2 {
+        font-size: 48px;
+        text-align: center;
+    }
+
+    .todo-list-fullpage .todo-container {
+        gap: 15px;
+    }
+
+    .todo-list-fullpage .todo-container {
+        flex-direction: column;
+        height: auto;
+        gap: 20px;
+        box-shadow: none;
+        margin-top: 40px;
+    }
+
+    .todo-list-fullpage .todo-container .add-task,
+    .todo-list-fullpage .todo-container .all-tasks {
+        width: 100%;
+        height: auto;
+    }
+
+    .todo-list-fullpage .all-tasks .task h5 {
+        font-size: 24px;
+    }
+
+    .empty-state {
+        margin: 60px;
+    }
+
+    .daily-planner-fullpage .day-planner {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .daily-planner-fullpage .day-planner .day-planner-time p {
+        font-size: 14px;
+    }
+
+    .daily-planner-fullpage .day-planner .day-planner-time input {
+        font-size: 20px;
+        padding: 18px 30px;
+        padding-top: 36px;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+    }
+
+    .back {
+        right: 20px;
+        top: 20px;
+        padding: 10px 12px;
+    }
+
+    .todo-list-fullpage h2,
+    .daily-planner-fullpage h2,
+    .motivational-fullpage h2,
+    .pomodoro-timer-fullpage h2,
+    .daily-goals-fullpage h2 {
+        font-size: 38px;
+        text-align: center;
+    }
+
+    .todo-list-fullpage .todo-container {
+        flex-direction: column;
+        height: auto;
+        gap: 20px;
+        box-shadow: none;
+    }
+
+    .todo-list-fullpage .todo-container .add-task,
+    .todo-list-fullpage .todo-container .all-tasks {
+        width: 100%;
+        height: auto;
+    }
+
+    .todo-container .add-task form textarea {
+        height: 160px;
+        font-size: 18px;
+    }
+
+    .todo-container .add-task form input[type="text"] {
+        font-size: 18px;
+    }
+
+    .todo-list-fullpage .all-tasks .task {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .todo-list-fullpage .all-tasks .task h5 {
+        font-size: 22px;
+    }
+
+    .task button {
+        font-size: 16px;
+        width: 100%;
+    }
+
+    .task-actions {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+    }
+
+    .daily-planner-fullpage .day-planner {
+        margin-top: 20px;
+        padding: 14px;
+        border-radius: 10px;
+    }
+
+    .daily-planner-fullpage .day-planner .day-planner-time p {
+        font-size: 13px;
+        top: 8px;
+        left: 8px;
+    }
+
+    .daily-planner-fullpage .day-planner .day-planner-time input {
+        font-size: 16px;
+        padding: 14px 20px;
+        padding-top: 32px;
+    }
 }

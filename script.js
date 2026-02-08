@@ -33,26 +33,23 @@ let taskDetailsInput = document.querySelector('.add-task textarea');
 let taskCheckImp = document.querySelector('#important');
 let allTasksContainer = document.querySelector('.all-tasks');
 
-let currentTask = [
-    {
-        task: 'Task 1',
-        details: 'Details of Task 1',
-        isImportant: true,
-        completed: false
-    },
-    {
-        task: 'Task 2',
-        details: 'Details of Task 2',
-        isImportant: false,
-        completed: false
-    }
-];
-
-loadTasks();
-renderTasks();
+let currentTask = [];
 
 function renderTasks() {
+
+    if (currentTask.length === 0) {
+        allTasksContainer.innerHTML = `
+            <div class="empty-state">
+                <h3>No tasks yet</h3>
+                <p>Add your first task to stay productive 🚀</p>
+            </div>
+        `;
+        return;
+    }
+
     let clutter = "";
+
+
 
     currentTask.forEach((taskObj, index) => {
         clutter += `
@@ -78,6 +75,11 @@ function renderTasks() {
 
     allTasksContainer.innerHTML = clutter;
 }
+
+loadTasks();
+renderTasks();
+
+
 
 function saveTasks() {
     localStorage.setItem("todoTasks", JSON.stringify(currentTask));
@@ -124,3 +126,63 @@ form.addEventListener('submit', (e) => {
         form.reset();
     }
 });
+
+
+// daily planner logic
+
+
+function DailyPlanner() {
+    let dayplanner = document.querySelector('.day-planner');
+
+    // Create time slots
+    let hours = new Array(18).fill(0).map((_, i) => {
+        let hour = i + 6;
+        let period = hour >= 12 ? 'PM' : 'AM';
+        let displayHour = hour % 12 === 0 ? 12 : hour % 12;
+        let nextHour = (hour + 1) % 12 === 0 ? 12 : (hour + 1) % 12;
+
+        return `${displayHour}:00 - ${nextHour}:00 ${period}`;
+    });
+
+    // Load saved planner (array)
+    let plannerData = JSON.parse(localStorage.getItem("plannerData")) || [];
+
+    // Render UI
+    function renderPlanner() {
+        let html = "";
+
+        hours.forEach((hour, index) => {
+            html += `
+            <div class="day-planner-time">
+                <p>${hour}</p>
+                <input type="text" placeholder="..." value="${plannerData[index] || ""}">
+            </div>
+        `;
+        });
+
+        dayplanner.innerHTML = html;
+
+        attachSaveEvents();
+    }
+
+    // Save input values
+    function attachSaveEvents() {
+        let inputs = document.querySelectorAll('.day-planner-time input');
+
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', () => {
+                plannerData[index] = input.value;
+                localStorage.setItem("plannerData", JSON.stringify(plannerData));
+            });
+        });
+    }
+
+    renderPlanner();
+}
+
+DailyPlanner();
+
+
+
+
+
