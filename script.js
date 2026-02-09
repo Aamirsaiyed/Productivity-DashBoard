@@ -290,3 +290,74 @@ resetBtn.addEventListener("click", resetTimer);
 
 updateTimer();
 
+
+
+// ===== Daily Goals =====
+
+const goalForm = document.querySelector(".goal-form");
+const goalInput = goalForm.querySelector("input");
+const goalsList = document.querySelector(".goals-list");
+const progressBar = document.querySelector(".progress-bar span");
+const progressText = document.querySelector(".progress-text");
+
+let goals = JSON.parse(localStorage.getItem("dailyGoals")) || [];
+
+function saveGoals() {
+    localStorage.setItem("dailyGoals", JSON.stringify(goals));
+}
+
+function renderGoals() {
+
+    if (goals.length === 0) {
+        goalsList.innerHTML = "<p style='opacity:0.6'>No goals yet</p>";
+        progressBar.style.width = "0%";
+        progressText.textContent = "0% Completed";
+        return;
+    }
+
+    let completed = goals.filter(goal => goal.done).length;
+    let percent = Math.round((completed / goals.length) * 100);
+
+    progressBar.style.width = percent + "%";
+    progressText.textContent = percent + "% Completed";
+
+    goalsList.innerHTML = "";
+
+    goals.forEach((goal, index) => {
+        goalsList.innerHTML += `
+            <div class="goal-item ${goal.done ? "done" : ""}">
+                <span onclick="toggleGoal(${index})">${goal.text}</span>
+                <button onclick="deleteGoal(${index})">✕</button>
+            </div>
+        `;
+    });
+}
+
+function toggleGoal(index) {
+    goals[index].done = !goals[index].done;
+    saveGoals();
+    renderGoals();
+}
+
+function deleteGoal(index) {
+    goals.splice(index, 1);
+    saveGoals();
+    renderGoals();
+}
+
+goalForm.addEventListener("submit", e => {
+    e.preventDefault();
+
+    if (goalInput.value.trim()) {
+        goals.push({
+            text: goalInput.value,
+            done: false
+        });
+
+        goalInput.value = "";
+        saveGoals();
+        renderGoals();
+    }
+});
+
+renderGoals();
