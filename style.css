@@ -435,6 +435,70 @@ h6 {
     padding-top: 40px;
 }
 
+/* Motivational Quotes */
+
+.motivational-fullpage {
+    display: flex;
+    flex-direction: column;
+}
+
+.quote-box {
+    margin-top: 120px;
+    background: var(--tri2);
+    padding: 60px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    max-width: 900px;
+    width: 100%;
+    align-self: center;
+}
+
+.quote-text {
+    font-size: 36px;
+    line-height: 1.4;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.quote-author {
+    font-size: 22px;
+    color: var(--tri1);
+    margin-bottom: 40px;
+}
+
+.new-quote-btn {
+    background: var(--tri1);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--sec);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.new-quote-btn:hover {
+    background: #e0a00d;
+}
+
+.new-quote-btn:active {
+    transform: scale(0.96);
+}
+
+@media (max-width:768px) {
+    .quote-box {
+        padding: 30px;
+        margin-top: 40px;
+    }
+
+    .quote-text {
+        font-size: 24px;
+    }
+}
+
+
 
 @media (max-width: 1024px) {
 

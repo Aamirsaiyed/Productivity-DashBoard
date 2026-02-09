@@ -185,4 +185,38 @@ DailyPlanner();
 
 
 
+// ===== Motivational Quotes (API) =====
 
+const quoteText = document.querySelector('.quote-text');
+const quoteAuthor = document.querySelector('.quote-author');
+const newQuoteBtn = document.querySelector('.new-quote-btn');
+
+let quotesList = [];
+
+// fetch quotes
+async function fetchQuotes() {
+    try {
+        const res = await fetch("https://type.fit/api/quotes");
+        quotesList = await res.json();
+        loadQuote();
+    } catch (err) {
+        console.error("Couldn't fetch quotes:", err);
+        quoteText.textContent = "Oops! Unable to load quotes.";
+        quoteAuthor.textContent = "";
+    }
+}
+
+// get random and display
+function loadQuote() {
+    if (!quotesList.length) return;
+    let random = Math.floor(Math.random() * quotesList.length);
+    let q = quotesList[random];
+
+    quoteText.textContent = `"${q.text}"`;
+    quoteAuthor.textContent = q.author ? `— ${q.author}` : "— Unknown";
+
+}
+
+newQuoteBtn.addEventListener('click', loadQuote);
+
+fetchQuotes();
