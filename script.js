@@ -209,6 +209,7 @@ async function fetchQuotes() {
 // get random and display
 function loadQuote() {
     if (!quotesList.length) return;
+
     let random = Math.floor(Math.random() * quotesList.length);
     let q = quotesList[random];
 
@@ -220,3 +221,72 @@ function loadQuote() {
 newQuoteBtn.addEventListener('click', loadQuote);
 
 fetchQuotes();
+
+
+
+// ===== Pomodoro Timer =====
+// 25 min focus timer chalata hai
+// 👉 time khatam hote hi 5 min break pe switch hota hai
+// 👉 phir wapas focus — automatic loop
+
+let sessionType = document.querySelector(".session-type");
+let timerDisplay = document.getElementById("timer");
+let startBtn = document.getElementById("startBtn");
+let pauseBtn = document.getElementById("pauseBtn");
+let resetBtn = document.getElementById("resetBtn");
+
+let focusTime = 25 * 60;
+console.log(focusTime); // 1500 seconds
+let breakTime = 5 * 60; // 300 seconds
+let timeLeft = focusTime;
+let isFocus = true;
+let interval = null;
+
+function updateTimer() {
+    let min = Math.floor(timeLeft / 60);  //  1500 / 60 = 25
+    let sec = timeLeft % 60; // 1500 % 60 = 0
+    timerDisplay.textContent =
+        `${min.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
+}
+
+function startTimer() {
+    if (interval) return;
+
+    interval = setInterval(() => {
+        timeLeft--;
+
+        if (timeLeft <= 0) {
+            isFocus = !isFocus;
+
+            if (isFocus) {
+                timeLeft = focusTime;
+                sessionType.textContent = "Focus Time";
+            } else {
+                timeLeft = breakTime;
+                sessionType.textContent = "Break Time";
+            }
+        }
+
+        updateTimer();
+    }, 1000);
+}
+
+function pauseTimer() {
+    clearInterval(interval);
+    interval = null;
+}
+
+function resetTimer() {
+    pauseTimer();
+    isFocus = true;
+    timeLeft = focusTime;
+    sessionType.textContent = "Focus Time";
+    updateTimer();
+}
+
+startBtn.addEventListener("click", startTimer);
+pauseBtn.addEventListener("click", pauseTimer);
+resetBtn.addEventListener("click", resetTimer);
+
+updateTimer();
+

@@ -443,15 +443,20 @@ h6 {
 }
 
 .quote-box {
+    margin: 0 auto;
     margin-top: 120px;
     background: var(--tri2);
     padding: 60px;
     border-radius: 16px;
-    text-align: center;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     max-width: 900px;
     width: 100%;
-    align-self: center;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .quote-text {
@@ -459,6 +464,7 @@ h6 {
     line-height: 1.4;
     margin-bottom: 25px;
     font-weight: 400;
+    text-align: center;
 }
 
 .quote-author {
@@ -487,16 +493,74 @@ h6 {
     transform: scale(0.96);
 }
 
-@media (max-width:768px) {
-    .quote-box {
-        padding: 30px;
-        margin-top: 40px;
-    }
 
-    .quote-text {
-        font-size: 24px;
-    }
+/* ===== Pomodoro Timer ===== */
+
+.pomodoro-timer-fullpage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.pomodoro-box {
+    margin-top: 80px;
+    background: var(--tri2);
+    padding: 60px 80px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.session-type {
+    font-size: 28px;
+    color: var(--tri1);
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.timer-circle {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    border: 10px solid var(--tri1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto 40px;
+}
+
+.timer-circle span {
+    font-size: 56px;
+    font-weight: 700;
+}
+
+.pomodoro-controls {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.pomodoro-controls button {
+    padding: 14px 30px;
+    font-size: 20px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: var(--tri1);
+    color: var(--sec);
+    transition: 0.2s ease;
+}
+
+.pomodoro-controls button:hover {
+    background: #e0a00d;
+}
+
+.pomodoro-controls button:active {
+    transform: scale(0.95);
+}
+
+
 
 
 
@@ -644,5 +708,29 @@ h6 {
         font-size: 16px;
         padding: 14px 20px;
         padding-top: 32px;
+    }
+
+    .pomodoro-box {
+        padding: 40px 30px;
+        margin-top: 40px;
+    }
+
+    .timer-circle {
+        width: 200px;
+        height: 200px;
+    }
+
+    .timer-circle span {
+        font-size: 42px;
+    }
+
+
+    .quote-box {
+        padding: 30px;
+        margin-top: 40px;
+    }
+
+    .quote-text {
+        font-size: 24px;
     }
 }
