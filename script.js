@@ -449,29 +449,6 @@ setInterval(updateTime, 60000);
 
 
 
-const themeBtn = document.querySelector(".theme-toggle");
-
-let darkMode = true;
-
-themeBtn.addEventListener("click", () => {
-    darkMode = !darkMode;
-
-    if (darkMode) {
-        document.documentElement.style.setProperty("--pri", "#f8f4e1");
-        document.documentElement.style.setProperty("--sec", "#381c0a");
-        document.documentElement.style.setProperty("--tri1", "#FEBA17");
-        document.documentElement.style.setProperty("--tri2", "#74512D");
-        themeBtn.innerHTML = `<i class="ri-moon-line"></i> Theme`;
-    } else {
-        document.documentElement.style.setProperty("--pri", "#1a1a1a");
-        document.documentElement.style.setProperty("--sec", "#f5f5f5");
-        document.documentElement.style.setProperty("--tri1", "#6366f1");
-        document.documentElement.style.setProperty("--tri2", "#e5e7eb");
-        themeBtn.innerHTML = `<i class="ri-sun-line"></i> Light`;
-    }
-});
-
-
 // Select all habit checkboxes
 const habitCheckboxes = document.querySelectorAll('.habit-card input');
 const proBar = document.querySelector('.habit-progress-bar span');
