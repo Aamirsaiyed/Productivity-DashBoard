@@ -4,6 +4,7 @@ const backBtns = document.querySelectorAll('.back');
 console.log(allElems);
 
 
+
 function hideAll() {
     allFullElems.forEach(section => {
         section.classList.remove('active');
@@ -361,3 +362,112 @@ goalForm.addEventListener("submit", e => {
 });
 
 renderGoals();
+
+// Weather Api 
+
+const weatherApiKey = "28ec6cd5f5a30ec789bf34b1cc27797d";
+const weatherApiUrl = "https://api.openweathermap.org/data/2.5/weather";
+
+let city = "Surat";
+
+// DOM
+const header = document.querySelector(".allElems .header");
+const tempEl = document.querySelector(".location-weather h1");
+const conditionEl = document.querySelector(".location-weather h4");
+const weatherInfoEls = document.querySelectorAll(".weather-info h4");
+const locationEl = document.querySelector(".location-time h4");
+const timeEl = document.querySelector(".location-time h1");
+
+async function fetchWeather() {
+    try {
+        const response = await fetch(
+            `${weatherApiUrl}?q=${city}&appid=${weatherApiKey}&units=metric`
+        );
+        const data = await response.json();
+        console.log(data);
+
+        if (data.cod !== 200) return;
+        const condition = data.weather[0].main.toLowerCase();
+
+        // UI update
+        tempEl.textContent = `${Math.round(data.main.temp)}°C`;
+        conditionEl.textContent = data.weather[0].main;
+        locationEl.textContent = `${data.name}, ${data.sys.country}`;
+
+        weatherInfoEls[0].textContent = `Humidity: ${data.main.humidity}%`;
+        weatherInfoEls[1].textContent = `Wind: ${Math.round(data.wind.speed)} km/h`;
+        weatherInfoEls[2].textContent = `Feels Like: ${Math.round(data.main.feels_like)}°C`;
+
+        // 🎨 Dynamic background
+        setWeatherBackground(condition);
+
+    } catch (err) {
+        console.error("Weather error:", err);
+    }
+}
+
+// 🌄 Dynamic Unsplash backgrounds
+function setWeatherBackground(condition) {
+
+    let imageUrl = "";
+
+    if (condition.includes("cloud")) {
+        imageUrl = "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1600&q=80";
+    }
+    else if (condition.includes("rain") || condition.includes("drizzle")) {
+        imageUrl = "https://images.unsplash.com/photo-1505678261036-a3fcc5e884ee?auto=format&fit=crop&w=1600&q=80";
+    }
+    else if (condition.includes("snow")) {
+        imageUrl = "https://images.unsplash.com/photo-1608889175123-8ee362201f81?auto=format&fit=crop&w=1600&q=80";
+    }
+    else if (condition.includes("clear")) {
+        imageUrl = "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80";
+    }
+    else {
+        imageUrl = "https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=1600&q=80";
+    }
+
+    header.style.background = `
+        linear-gradient(rgba(56,28,10,0.75), rgba(56,28,10,0.75)),
+        url("${imageUrl}")
+    `;
+    header.style.backgroundSize = "cover";
+    header.style.backgroundPosition = "center";
+}
+
+// ⏰ Live time
+function updateTime() {
+    const now = new Date();
+    const options = { weekday: "long", hour: "numeric", minute: "2-digit" };
+    timeEl.textContent = now.toLocaleString("en-IN", options);
+}
+
+// Init
+fetchWeather();
+updateTime();
+setInterval(updateTime, 60000);
+
+
+
+const themeBtn = document.querySelector(".theme-toggle");
+
+let darkMode = true;
+
+themeBtn.addEventListener("click", () => {
+    darkMode = !darkMode;
+
+    if (darkMode) {
+        document.documentElement.style.setProperty("--pri", "#f8f4e1");
+        document.documentElement.style.setProperty("--sec", "#381c0a");
+        document.documentElement.style.setProperty("--tri1", "#FEBA17");
+        document.documentElement.style.setProperty("--tri2", "#74512D");
+        themeBtn.innerHTML = `<i class="ri-moon-line"></i> Theme`;
+    } else {
+        document.documentElement.style.setProperty("--pri", "#1a1a1a");
+        document.documentElement.style.setProperty("--sec", "#f5f5f5");
+        document.documentElement.style.setProperty("--tri1", "#6366f1");
+        document.documentElement.style.setProperty("--tri2", "#e5e7eb");
+        themeBtn.innerHTML = `<i class="ri-sun-line"></i> Light`;
+    }
+});
+

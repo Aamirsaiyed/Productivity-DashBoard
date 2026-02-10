@@ -1,5 +1,5 @@
 :root {
-    --pri: #F8F4E1;
+    --pri: #f8f4e1;
     --sec: #381c0a;
     --tri1: #FEBA17;
     --tri2: #74512D;
@@ -84,30 +84,208 @@ h6 {
     color: var(--pri);
 }
 
+
+.topbar {
+    width: 100%;
+    padding: 22px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--sec);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.brand {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--tri1);
+    letter-spacing: 1px;
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--tri2);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    color: var(--pri);
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.theme-toggle i {
+    font-size: 20px;
+}
+
+.theme-toggle:hover {
+    background: var(--tri1);
+    color: var(--sec);
+}
+
+
+
+
 /* Dashboard Grid */
 .allElems {
     height: 100%;
     width: 100%;
-    padding: 80px 40px 40px;
+    position: absolute;
+    padding: 40px;
+}
+
+.allElems .allFeatures {
+    height: 100%;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-    position: absolute;
     overflow-y: auto;
+
 }
 
+.allElems .header {
+    min-height: 280px;
+    border-radius: 18px;
+    padding: 40px 50px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* Unsplash background */
+    background:
+        linear-gradient(rgba(56, 28, 10, 0.75),
+            rgba(56, 28, 10, 0.75)),
+        url("https://images.unsplash.com/photo-1501973801540-537f08ccae7b?auto=format&fit=crop&w=1600&q=80");
+
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* LEFT SIDE TIME + LOCATION */
+
+.location-time h1 {
+    font-size: 56px;
+    font-weight: 700;
+}
+
+.location-time h4 {
+    font-size: 22px;
+    color: var(--tri1);
+    margin-top: 6px;
+    letter-spacing: 1px;
+}
+
+/* RIGHT WEATHER CARD */
+.location-weather {
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    padding: 26px 32px;
+    border-radius: 16px;
+    min-width: 320px;
+}
+
+
+.location-weather h1 {
+    font-size: 58px;
+    font-weight: 700;
+    color: var(--tri1);
+}
+
+.location-weather h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* WEATHER INFO */
+
+.weather-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    gap: 14px;
+}
+
+.weather-info h4 {
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+/* FORECAST */
+
+.location-forecast {
+    margin-top: 18px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.location-forecast h4 {
+    font-size: 18px;
+    color: var(--tri1);
+    margin-bottom: 6px;
+}
+
+.location-forecast ul {
+    list-style: none;
+}
+
+.location-forecast li {
+    font-size: 15px;
+    opacity: 0.75;
+    margin: 4px 0;
+}
+
+.location-weather:hover {
+    box-shadow: 0 0 0 1px var(--tri1), 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .allElems .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        padding: 30px;
+    }
+
+    .location-weather {
+        width: 100%;
+    }
+
+    .location-time h1 {
+        font-size: 42px;
+    }
+}
+
+
+
 @media (min-width: 1400px) {
-    .allElems {
+    .allElems .allFeatures {
         grid-template-columns: repeat(5, 1fr);
     }
 }
 
 @media (max-width: 768px) {
     .allElems {
-        padding: 40px 20px 20px;
+        padding: 20px;
+    }
+
+
+    .allElems .allFeatures {
         grid-template-columns: 1fr;
         gap: 15px;
     }
+
+
 }
 
 /* Cards */
@@ -150,25 +328,33 @@ h6 {
 
 /* Full Screens */
 
+
+
 .fullElem {
-    height: 100%;
-    width: 100%;
+    position: fixed;
+    inset: 0;
     background: var(--sec);
     padding: 30px;
-    position: absolute;
-    inset: 0;
+    overflow-y: auto;
+
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: scale(0.95);
+    transform: scale(0.96);
     transition: all 0.35s ease;
+    z-index: 200;
 }
+
 
 .fullElem.active {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
     transform: scale(1);
+}
+
+body.full-open {
+    overflow: hidden;
 }
 
 /* Back Button */
