@@ -133,19 +133,17 @@ h6 {
 
 /* Dashboard Grid */
 .allElems {
-    height: 100%;
     width: 100%;
     position: absolute;
     padding: 40px;
 }
 
 .allElems .allFeatures {
-    height: 100%;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-    overflow-y: auto;
+    padding-bottom: 20px;
 
 }
 
@@ -335,7 +333,6 @@ h6 {
     inset: 0;
     background: var(--sec);
     padding: 30px;
-    overflow-y: auto;
 
     opacity: 0;
     visibility: hidden;
@@ -353,9 +350,6 @@ h6 {
     transform: scale(1);
 }
 
-body.full-open {
-    overflow: hidden;
-}
 
 /* Back Button */
 
@@ -847,6 +841,132 @@ body.full-open {
     border-radius: 4px;
     cursor: pointer;
 }
+
+
+/* ===== Habit Tracker ===== */
+
+.habit-fullpage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Progress box */
+
+.habit-progress-box {
+    margin-top: 50px;
+    background: var(--tri2);
+    padding: 26px 30px;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.habit-progress-text {
+    font-size: 22px;
+    margin-bottom: 14px;
+    color: var(--pri);
+}
+
+.habit-progress-bar {
+    height: 14px;
+    background: #4d341c;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.habit-progress-bar span {
+    height: 100%;
+    width: 0%;
+    display: block;
+    background: var(--tri1);
+    transition: width 0.35s ease;
+}
+
+
+/* Habits grid */
+
+.habit-grid {
+    margin-top: 50px;
+    width: 100%;
+    max-width: 900px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
+
+/* Individual habit card */
+
+.habit-card {
+    background: var(--tri2);
+    padding: 24px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+
+
+/* Checkbox styling */
+
+.habit-card input {
+    width: 22px;
+    height: 22px;
+    accent-color: var(--tri1);
+    cursor: pointer;
+}
+
+/* Text */
+
+.habit-info h4 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.habit-info p {
+    font-size: 15px;
+    opacity: 0.75;
+    margin-top: 4px;
+}
+
+/* Completed habit style */
+
+.habit-card.completed {
+    opacity: 0.65;
+    text-decoration: line-through;
+}
+
+
+body.full-open {
+    overflow: hidden;
+}
+
+
+/* Responsive */
+
+@media(max-width:768px) {
+    .habit-progress-box {
+        padding: 20px;
+    }
+
+    .habit-progress-text {
+        font-size: 18px;
+    }
+
+    .habit-info h4 {
+        font-size: 18px;
+    }
+
+    .habit-grid {
+        gap: 16px;
+    }
+}
+
 
 @media(max-width:768px) {
     .goals-box {

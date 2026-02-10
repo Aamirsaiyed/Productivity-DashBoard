@@ -471,3 +471,74 @@ themeBtn.addEventListener("click", () => {
     }
 });
 
+
+// Select all habit checkboxes
+const habitCheckboxes = document.querySelectorAll('.habit-card input');
+const proBar = document.querySelector('.habit-progress-bar span');
+const proText = document.querySelector('.habit-progress-text');
+
+function updateHabitProgress() {
+    const total = habitCheckboxes.length;
+    let completed = 0;
+
+    habitCheckboxes.forEach((checkbox) => {
+        if (checkbox.checked) completed++;
+    });
+
+    const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+
+    // Update progress bar
+    proBar.style.width = percent + '%';
+
+    // Update progress text
+    proText.textContent = percent + '% Completed';
+}
+
+// Add event listener to all checkboxes
+habitCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', () => {
+        // Toggle completed class on card
+        const card = checkbox.closest('.habit-card');
+        if (checkbox.checked) {
+            card.classList.add('completed');
+        } else {
+            card.classList.remove('completed');
+        }
+
+        // Update progress bar
+        updateHabitProgress();
+    });
+});
+
+// Initialize progress bar on page load
+updateHabitProgress();
+
+
+const cards = document.querySelectorAll(".elem");
+const fullPages = document.querySelectorAll(".fullElem");
+
+// OPEN FULL PAGE
+cards.forEach((card, index) => {
+    card.addEventListener("click", () => {
+
+        // close all first (safety)
+        fullPages.forEach(page => page.classList.remove("active"));
+
+        // open related page
+        fullPages[index].classList.add("active");
+
+        // stop background scroll
+        document.body.classList.add("full-open");
+    });
+});
+
+// CLOSE FULL PAGE
+backBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+
+        fullPages.forEach(page => page.classList.remove("active"));
+
+        // allow background scroll again
+        document.body.classList.remove("full-open");
+    });
+});
