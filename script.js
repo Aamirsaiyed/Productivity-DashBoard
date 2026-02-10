@@ -513,32 +513,3 @@ habitCheckboxes.forEach((checkbox) => {
 // Initialize progress bar on page load
 updateHabitProgress();
 
-
-const cards = document.querySelectorAll(".elem");
-const fullPages = document.querySelectorAll(".fullElem");
-
-// OPEN FULL PAGE
-cards.forEach((card, index) => {
-    card.addEventListener("click", () => {
-
-        // close all first (safety)
-        fullPages.forEach(page => page.classList.remove("active"));
-
-        // open related page
-        fullPages[index].classList.add("active");
-
-        // stop background scroll
-        document.body.classList.add("full-open");
-    });
-});
-
-// CLOSE FULL PAGE
-backBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-
-        fullPages.forEach(page => page.classList.remove("active"));
-
-        // allow background scroll again
-        document.body.classList.remove("full-open");
-    });
-});

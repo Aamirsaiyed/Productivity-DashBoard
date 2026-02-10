@@ -340,6 +340,7 @@ h6 {
     transform: scale(0.96);
     transition: all 0.35s ease;
     z-index: 200;
+    overflow: auto;
 }
 
 
@@ -389,37 +390,58 @@ h6 {
 
 .todo-list-fullpage .todo-container {
     height: 85%;
+    /* optional, ya min-height de sakte ho */
     margin-top: 25px;
-    /* background-color: var(--tri2); */
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    gap: 2%;
+    /* Align items stretch, taaki child dono columns pura height le le */
+    align-items: stretch;
 }
+
+.todo-list-fullpage .todo-container .add-task,
+.todo-list-fullpage .todo-container .all-tasks {
+    height: 100%;
+    padding: 30px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    /* form and tasks properly stack ho */
+}
+
 
 .todo-list-fullpage .todo-container .add-task {
     background-color: var(--tri2);
     width: 34%;
-    height: 100%;
-    padding: 30px;
-    border-radius: 12px;
 }
 
 .todo-list-fullpage .todo-container .all-tasks {
     background-color: var(--tri2);
     width: 64%;
-    height: 100%;
-    border-radius: 12px;
-    padding: 30px;
     overflow: auto;
 }
 
-.todo-list-fullpage .todo-container .add-task form {
+
+
+.todo-container .add-task form {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    align-items: flex-start;
+    flex: 1;
+}
+
+.todo-container .add-task form textarea {
+    flex: 1;
+    width: 100%;
+    resize: none;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--sec);
+    color: var(--pri);
+    font-size: 22px;
+    outline: none;
+    padding: 12px 16px;
 }
 
 
@@ -436,19 +458,6 @@ h6 {
     outline: none;
 }
 
-
-.todo-container .add-task form textarea {
-    padding: 12px 16px;
-    width: 100%;
-    height: 300px;
-    resize: none;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--sec);
-    color: var(--pri);
-    outline: none;
-    font-size: 22px;
-}
 
 .todo-container .add-task form .important-task {
     display: flex;
@@ -699,8 +708,8 @@ h6 {
 }
 
 .timer-circle {
-    width: 260px;
-    height: 260px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     border: 10px solid var(--tri1);
     display: flex;
@@ -942,10 +951,6 @@ h6 {
 }
 
 
-body.full-open {
-    overflow: hidden;
-}
-
 
 /* Responsive */
 
@@ -990,6 +995,7 @@ body.full-open {
     .daily-goals-fullpage h2 {
         font-size: 48px;
         text-align: center;
+        margin-top: 60px;
     }
 
     .todo-list-fullpage .todo-container {
@@ -1021,6 +1027,7 @@ body.full-open {
     .daily-planner-fullpage .day-planner {
         grid-template-columns: 1fr;
         gap: 14px;
+
     }
 
     .daily-planner-fullpage .day-planner .day-planner-time p {
@@ -1113,6 +1120,7 @@ body.full-open {
         margin-top: 20px;
         padding: 14px;
         border-radius: 10px;
+        overflow-y: auto;
     }
 
     .daily-planner-fullpage .day-planner .day-planner-time p {
