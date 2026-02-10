@@ -802,7 +802,7 @@ h6 {
 
 .quote-box {
     margin: 0 auto;
-    margin-top: 60px;
+    margin-top: 40px;
     background: var(--surface);
     padding: 60px;
     border-radius: 16px;
@@ -887,7 +887,7 @@ h6 {
 }
 
 .timer-circle span {
-    font-size: 46px;
+    font-size: 56px;
     font-weight: 700;
 }
 
@@ -927,7 +927,7 @@ h6 {
 }
 
 .goals-box {
-    margin-top: 40px;
+    margin-top: 30px;
     background: var(--tri2);
     padding: 50px 60px;
     border-radius: 22px;
